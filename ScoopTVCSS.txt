@@ -1,0 +1,85 @@
+/* SCOOPTV — 90s cable guide (Prevue / TV Guide Channel) */
+:root{--g:#ffdf00;--c:#7efcff;--n:#000a46;--d:#000428;--b:#0033c4;--h:#0b4adf;--k:#000;--w:#fff;--r:#e11d48}
+body,.navbar,.navbar-inverse,.navbar-nav>li>a,.navbar-brand,.dropdown-menu,.dropdown-menu>li>a{font-family:Tahoma,"MS Sans Serif",Arial,sans-serif!important;text-shadow:none!important;background-image:none!important}
+.navbar-inverse{position:fixed!important;top:0;left:0;width:100%;z-index:999999;background:linear-gradient(#2a6dff,#0039c8)!important;border-bottom:2px solid var(--g)!important;box-shadow:none}
+.navbar-inverse .navbar-brand{display:none!important;width:0!important;padding:0!important;margin:0!important;border:0!important}
+.navbar-inverse .navbar-nav>li>a{color:var(--g)!important;font-weight:700!important;background:transparent!important;border-right:1px solid #ffffff22}
+.navbar-inverse .navbar-nav>li>a:hover,.navbar-inverse .navbar-nav>.open>a,.navbar-inverse .navbar-nav>.open>a:focus{color:var(--k)!important;background:var(--g)!important}
+.dropdown-menu{z-index:999999;background:#00105c!important;border:2px solid var(--g)!important;border-radius:0}
+.dropdown-menu>li>a{color:var(--w)!important}.dropdown-menu>li>a:hover{background:var(--g)!important;color:var(--k)!important}
+body.scooptv-on #mainpage,body.scooptv-on #leftpane,body.scooptv-on #rightpane,body.scooptv-on #footer{display:none!important}
+#scooptv-viewport{position:fixed;inset:55px 0 0;z-index:10;display:flex;flex-direction:column;gap:6px;width:100vw;height:calc(100vh - 55px);height:calc(100dvh - 55px);padding:6px;box-sizing:border-box;overflow:hidden;background:var(--d);color:var(--w)}
+#scoop-header,#scoop-side,#scoop-guide,#tv-stage{border:2px solid;border-color:#7eb6ff #001040 #001040 #7eb6ff}
+#scoop-header{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:5px 8px;background:linear-gradient(#1a5cff,#0033aa 45%,#002080);color:var(--g);font-weight:700}
+#scoop-brand{display:flex;align-items:center;gap:8px;font-size:13px;letter-spacing:.4px}
+#scoop-brand b{padding:2px 7px;background:var(--g);color:var(--k);font-size:12px;letter-spacing:1px;box-shadow:inset 1px 1px 0 #fff8,inset -1px -1px 0 #b89000}
+#scoop-clock{margin-left:auto;padding:2px 7px;background:var(--k);color:var(--g);font:700 13px "Courier New",monospace;border:1px solid var(--g);letter-spacing:1px}
+#scoop-exit{padding:3px 8px;border:2px solid;border-color:#fff #001040 #001040 #fff;background:#071633;color:var(--g);text-decoration:none;font-size:11px;font-weight:700}
+#scoop-main-row{display:grid;grid-template-columns:minmax(0,1.85fr) minmax(280px,.95fr);gap:6px;flex:1 1 auto;min-height:220px}
+#tv-stage{position:relative;width:100%;height:100%;min-width:0;overflow:hidden;background:var(--k);box-shadow:inset 0 0 0 4px #111,inset 0 0 0 5px #555}
+#tv-stage.zap{box-shadow:inset 0 0 0 4px var(--g),0 0 18px #ffdf0066}
+#tv-stage:after{content:"";position:absolute;inset:0;z-index:8;pointer-events:none;background:repeating-linear-gradient(transparent 0 2px,rgba(0,0,0,.32) 2px 4px);opacity:.22}
+#videowrap,#ytapiplayer{position:absolute!important;left:-9999px!important;width:1px!important;height:1px!important;overflow:hidden!important;opacity:0!important;pointer-events:none!important}
+#scoop-screen,#scoop-archive{position:absolute;inset:0;z-index:1;width:100%;height:100%;border:0;background:#000}#scoop-archive{display:none;object-fit:contain}#tv-stage.archive #scoop-screen{display:none}#tv-stage.archive #scoop-archive{display:block}
+#static-fx{position:absolute;inset:-20%;z-index:12;pointer-events:none;opacity:0;background:repeating-radial-gradient(#fff 0 1px,#111 2px 3px);background-size:180px 180px}
+#static-fx.on{opacity:1;animation:scoop-snow .62s steps(4)}
+#static-fx.hold{opacity:.92;animation:scoop-snow .8s steps(3) infinite}
+@keyframes scoop-snow{to{background-position:90px 40px;transform:translate(8px,-6px)}}
+#osd{position:absolute;z-index:20;top:8px;right:10px;text-align:right;pointer-events:none;max-width:70%}
+#osd-channel{color:var(--g);font:700 26px "Courier New",monospace;letter-spacing:1px;text-shadow:2px 2px 0 #000,0 0 8px #000}
+#osd-station{color:#fff;font:700 12px Tahoma,sans-serif;letter-spacing:.4px;text-shadow:1px 1px 0 #000;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#osd-channel.slam{animation:scoop-slam .55s cubic-bezier(.15,1.3,.3,1)}
+@keyframes scoop-slam{0%{transform:scale(1.7) translateY(-10px);opacity:0}100%{transform:none;opacity:1}}
+#scoop-side{display:flex;flex-direction:column;min-width:0;min-height:0;padding:0;background:var(--n);overflow:hidden}
+#scoop-side-head,#scoop-guide-head{display:flex;justify-content:space-between;align-items:center;padding:6px 8px;background:linear-gradient(#2a6dff,#0039c8);color:var(--g);font-size:11px;font-weight:700;letter-spacing:.5px;border-bottom:2px solid var(--g);text-transform:uppercase}
+#toggle-panel-btn{padding:3px 8px;border:2px solid;border-color:#fff #001040 #001040 #fff;background:#123a9a;color:var(--g);font:700 10px inherit;cursor:pointer}
+#panel-info-view{display:flex;flex:1;flex-direction:column;min-height:0;padding:8px 10px 10px;overflow:auto}
+#card-station{color:var(--g);font-size:12px;font-weight:700;letter-spacing:.6px}
+#card-title{margin:4px 0;color:var(--c);font-size:16px;font-weight:700;line-height:1.25;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+#card-desc{margin:0;color:#d6e7ff;font-size:12px;line-height:1.35;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+#scoop-statusline{display:flex;justify-content:space-between;margin-top:8px;padding-top:8px;border-top:1px solid #2a5ad0;color:var(--g);font-size:11px;font-weight:700}
+#scoop-status{color:var(--c)}
+#scoop-remote{display:grid;grid-template-columns:repeat(3,1fr);gap:5px;margin-top:10px}
+#scoop-dial,#ch-power,#ch-shuffle{grid-column:1/-1}
+#scoop-dial{padding:4px 6px;background:#000;color:var(--g);text-align:center;font:700 18px "Courier New",monospace;letter-spacing:3px;border:2px solid;border-color:#001040 #7eb6ff #7eb6ff #001040}
+#scoop-remote button{padding:8px 4px;border:2px solid;border-color:#fff #001040 #001040 #fff;background:linear-gradient(#1d4fc4,#0c2f86);color:var(--g);font:700 13px inherit;cursor:pointer}
+#scoop-remote button:hover,#scoop-remote button.lit{background:var(--g);color:#000}
+#scoop-remote button:active{border-color:#001040 #fff #fff #001040}
+#panel-chat-view{display:none;flex:1;flex-direction:column;min-height:0;padding:6px}
+#scoop-chat-area{display:flex;flex:1;min-height:0;overflow:hidden;background:#00082e;border:1px solid #2a5ad0;margin-bottom:6px}
+#scoop-chat-buffer{flex:1;min-width:0;overflow:auto;padding:8px;color:var(--w);font-size:17px!important;line-height:1.45!important;word-wrap:break-word}
+#scoop-chat-buffer .chat-msg,#scoop-chat-buffer .message{font-size:17px!important;line-height:1.45!important}
+#scoop-chat-buffer .timestamp{font-size:12px!important;opacity:.7;margin-right:5px}
+#scoop-chat-buffer .username{color:var(--g)!important;font-weight:700!important;font-size:17px!important;text-shadow:none!important}
+#scoop-chat-buffer img{max-width:48px!important;max-height:48px!important;width:auto!important;height:auto!important;object-fit:contain!important;vertical-align:middle!important}
+#scoop-userlist{flex:0 0 128px;width:128px;overflow:auto;border-left:1px solid #2a5ad0;padding:6px;font-size:15px!important;color:var(--w)!important}
+#scoop-userlist span{color:var(--w)!important;font-weight:500!important;text-shadow:none!important}
+#scoop-userlist .userlist_owner,#scoop-userlist .userlist_siteadmin,#scoop-userlist .userlist_admin,#scoop-userlist .userlist_channeladmin,#scoop-userlist .userlist_moderator,#scoop-userlist .userlist_mod{display:block;margin:2px 0;padding:2px 4px;background:#002080;border:1px solid var(--g);color:var(--g)!important;font-weight:800!important}
+#scoop-userlist .userlist_owner span,#scoop-userlist .userlist_siteadmin span,#scoop-userlist .userlist_admin span,#scoop-userlist .userlist_channeladmin span,#scoop-userlist .userlist_moderator span,#scoop-userlist .userlist_mod span{color:var(--g)!important;font-weight:700!important}
+#scoop-chat-compose{display:flex}
+#scoop-chat-input{flex:1;min-width:0;padding:8px 10px;border:2px solid;border-color:#001040 #7eb6ff #7eb6ff #001040;background:#00082e;color:var(--w);font-size:16px}
+#scoop-guide{display:flex;flex:1 1 220px;flex-direction:column;min-height:150px;max-height:46%;overflow:hidden;padding:0;background:var(--n)}
+#scoop-guide-head small{color:var(--c);font-weight:700}
+#scoop-guide-scroll{flex:1;min-height:0;overflow:auto;background:#00082e}
+#scoop-guide-scroll>table{width:100%!important;table-layout:fixed;border-collapse:separate;border-spacing:1px;font-size:13px;color:var(--w)}
+#scoop-guide-scroll thead{position:sticky;top:0;z-index:2}
+#scoop-guide-scroll th{padding:4px 6px;background:linear-gradient(#2a6dff,#0039c8);color:var(--c);text-align:left;font-size:10px;letter-spacing:.7px;border:1px solid #7eb6ff;text-transform:uppercase}
+#scoop-guide-scroll th:first-child,#dynamic-cable-grid .ch-number{width:36px}
+#scoop-guide-scroll th:nth-child(2),#dynamic-cable-grid .ch-station{width:196px}
+#scoop-guide-scroll th:last-child,#dynamic-cable-grid .ch-status{width:70px;text-align:right}
+#dynamic-cable-grid .ch-row{cursor:pointer}
+#dynamic-cable-grid .ch-row:hover td,#dynamic-cable-grid .ch-focus td{filter:brightness(1.16);box-shadow:inset 0 0 0 1px var(--c)}
+#dynamic-cable-grid .ch-row:focus{outline:2px solid var(--c);outline-offset:-2px}
+#dynamic-cable-grid td{padding:5px 7px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;border:1px solid #1a4ccc;background:linear-gradient(#1850d8,#0a2fa8);vertical-align:middle}
+#dynamic-cable-grid .ch-number{padding:5px 0;background:linear-gradient(#00105c,#00083a);color:var(--g);font:700 14px/1 "Courier New",monospace;text-align:center}
+#dynamic-cable-grid .ch-station{font-size:13px;font-weight:800;letter-spacing:.2px}
+#dynamic-cable-grid .ch-program{font-size:13px}
+#dynamic-cable-grid .ch-badge{display:inline-block;min-width:52px;padding:2px 4px;background:#002080;border:1px solid #7eb6ff;color:var(--w);text-align:center;font-size:10px;font-weight:800;letter-spacing:.3px}
+#dynamic-cable-grid .active-ch td{background:linear-gradient(#ffe44a,#e6c200);color:var(--k);border-color:#fff;filter:none}
+#dynamic-cable-grid .active-ch .ch-number{background:linear-gradient(#ff9a1a,#cc6a00);color:var(--w);border-color:var(--g)}
+#dynamic-cable-grid .active-ch .ch-badge{background:var(--k);border-color:var(--k);color:var(--g)}
+#scooptv-viewport ::-webkit-scrollbar{width:10px;height:10px}
+#scooptv-viewport ::-webkit-scrollbar-track{background:#000428}
+#scooptv-viewport ::-webkit-scrollbar-thumb{background:#0033c4;border:1px solid var(--g)}
+@media(max-width:980px){#scoop-main-row{grid-template-columns:1fr;flex:0 0 auto;height:min(56vw,42vh)}#scoop-side{min-height:0;max-height:none}#scoop-guide{max-height:none}#scoop-guide-scroll th:nth-child(2),#dynamic-cable-grid .ch-station{width:150px}}
+@media(max-width:760px){#scooptv-viewport{padding:5px;gap:5px}#scoop-guide-scroll th:nth-child(2),#dynamic-cable-grid .ch-station{width:108px}#scoop-userlist{flex-basis:96px;width:96px}#scoop-guide-head small,#scoop-clock{display:none}#osd-channel{font-size:20px}#scoop-chat-buffer,#scoop-chat-buffer .chat-msg,#scoop-chat-buffer .username{font-size:15px!important}}
